@@ -11,6 +11,7 @@ module.exports = {
         dimBlue: "rgba(9, 151, 124, 0.1)",
         light: "#1f3640",
         grey: "#7a8991",
+        grey2: "#a8bec9",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

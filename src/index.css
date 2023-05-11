@@ -115,6 +115,9 @@ body {
   transform: translateY(-2px);
 }
 
+.box__shadow__2 {
+  box-shadow: 0 var(--shadow-y) 0 var(--color-gray-dark);
+}
 .btn:active {
   transform: translateY(2px);
   --shadow-y: 4px;
@@ -178,4 +181,33 @@ body {
 .palyers_btn .active {
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
   background-color: var(--color-gray);
+}
+
+.board__turn {
+  border-radius: 5px;
+  background-color: var(--color-bg-light);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+  padding: 8px 12px;
+  /* gap: 4px; */
+}
+
+.board__restart svg {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
+  transition: all 0.3s;
+}
+
+.board__restart:active svg {
+  transform: rotate(180deg);
+}
+
+.board__body .active.shadow-blue {
+  background-color: var(--color-blue);
+}
+
+.board__body .active.shadow-yellow {
+  background-color: var(--color-yellow);
 }
