@@ -12,6 +12,12 @@ module.exports = {
         light: "#1f3640",
         grey: "#7a8991",
         grey2: "#a8bec9",
+        themeyello: "#f2b238",
+        themeblue: "#30c4be",
+        themelight: "#a8bec9",
+      },
+      opacity: {
+        15: "0.15",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

@@ -3,10 +3,16 @@ import Xicon from "./Icons/Xicon";
 import Oicon from "./Icons/Oicon";
 import ReLoad from "./Icons/ReLoad";
 import GameComponent from "./GameComponent";
+import Conter from "./Conter";
+import { GameContext } from "./context/GameState";
+import { useContext } from "react";
+
 // import red from './'
 // import { handleStart } from "../App";
 const handleStart = () => console.log("Hello World");
-function CardHeader() {
+// const conters = [{ title: "YOU", count: 3 }];
+function CardHeader({ Xnext }) {
+  // {}
   console.log("Hello");
   return (
     <div className="flex flex-row justify-between items-center">
@@ -16,29 +22,34 @@ function CardHeader() {
       </div>
       <div className="card board__turn flex  active:translate-y-1  cursor-pointer flex-row justify-center items-center gap-1">
         {/* {Turn  X } */}
-        <Xicon size="sm" color="dark" />
+        {Xnext ? (
+          <Xicon size="sm" color="light" />
+        ) : (
+          <Oicon size="sm" color="light" />
+        )}
         <span className=" text-white"> Turn</span>
       </div>
       <button
-        class="board__restart bg-gray-200 text-primary active:rotate-2 flex justify-center p-2 rounded-md
+        className="board__restart bg-gray-200 text-primary active:rotate-2 flex justify-center p-2 rounded-md
         "
       >
         <ReLoad size="sm" />
-        {/* <span class="sr-only">Icon description</span> */}
+        {/* <span className="sr-only">Icon description</span> */}
       </button>
     </div>
   );
 }
 function Board() {
-  const squeries = ["", "x", "o", "", "x", "o", "", "x", "o"];
+  const { ChoseSquer, Squeres, Xnext, Ties } = useContext(GameContext);
+  const squeries = Squeres; //["", "x", "o", "", "x", "o", "", "x", "o"];
   return (
     <div className="flex  p-3 flex-col  m-auto h-[100vh]  justify-center items-center w-full">
       <div
-        className="flex-col max-w-[480px] flex overflow-hidden justify-around  sm:min-h-[90%] min-h-[100%]  
+        className="flex-col max-w-[480px] flex overflow-hidden justify-around  sm:min-h-[80%] min-h-[100%]  
          "
       >
         {/* Card Board Header  */}
-        <CardHeader />
+        <CardHeader Xnext={Xnext} />
         <div className="grid grid-cols-3 gap-4">
           {squeries.map((el, index) => (
             <GameComponent
@@ -49,20 +60,23 @@ function Board() {
             />
           ))}
         </div>
-        <div className="flex flex-col  justify-around sm:h-[150px]">
-          <button
-            className="btn btn-yellow w-full"
-            onClick={() => handleStart("cpu")}
-          >
-            new game (vs CPU)
-          </button>
-          <button
-            className="btn btn-blue w-full"
-            onClick={() => handleStart("user")}
-          >
-            {" "}
-            new game (vs Player)
-          </button>
+        {/* Counters Card  */}
+        <div className="grid grid-cols-3 gap-4">
+          <Conter
+            title="you(x)"
+            count={Ties.x}
+            style="bg-themeblue shadow-themeblue/70 "
+          />
+          <Conter
+            title="Tie"
+            count={!isNaN(Ties.o + Ties.x) ? Ties.o + Ties.x : 0}
+            style="bg-themelight shadow-themelight/70"
+          />
+          <Conter
+            title="cmp(O)"
+            count={Ties.o}
+            style="bg-themeyello shadow-themeyello/70"
+          />
         </div>
       </div>
     </div>
