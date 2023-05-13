@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GameContext } from "../context/GameState";
+import { ModalContext } from "../context/ModalState";
 
-const ReLoad = ({ color, size }) => {
+const ReLoad = ({ color, size, onclick }) => {
+  const { showRestartModel } = useContext(ModalContext);
   return (
     <div
+      onClick={() => showRestartModel()}
       className={`icon ${color ? "icon-" + color : "icon-blue"} ${
         size && "icon-" + size
       }`}

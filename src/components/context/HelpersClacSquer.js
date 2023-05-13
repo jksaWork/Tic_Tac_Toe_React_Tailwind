@@ -19,7 +19,7 @@ export function calcWinner(squares) {
   return null;
 }
 
-export default function calcBestMove(squares, player) {
+export function calcBestMove(squares, player) {
   const getArrDuplicatedCount = (arr) => {
     let count = 0;
     arr.forEach((i) => {
@@ -33,8 +33,10 @@ export default function calcBestMove(squares, player) {
   const sortedLines = lines.sort((a, b) => {
     let acount = getArrDuplicatedCount(a);
     let bcount = getArrDuplicatedCount(b);
+    //     console.log(a, acount, b, bcount);
     return bcount - acount;
   });
+  console.log(sortedLines);
 
   for (let i = 0; i < sortedLines.length; i++) {
     let val = sortedLines[i].find((el) => {

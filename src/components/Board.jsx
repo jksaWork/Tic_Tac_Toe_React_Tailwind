@@ -13,7 +13,7 @@ const handleStart = () => console.log("Hello World");
 // const conters = [{ title: "YOU", count: 3 }];
 function CardHeader({ Xnext }) {
   // {}
-  console.log("Hello");
+
   return (
     <div className="flex flex-row justify-between items-center">
       <div className="flex flex-row justify-center items-center ">
@@ -40,7 +40,8 @@ function CardHeader({ Xnext }) {
   );
 }
 function Board() {
-  const { ChoseSquer, Squeres, Xnext, Ties } = useContext(GameContext);
+  const { ChoseSquer, Squeres, Xnext, checkPlyear, Ties, showRestartModel } =
+    useContext(GameContext);
   const squeries = Squeres; //["", "x", "o", "", "x", "o", "", "x", "o"];
   return (
     <div className="flex  p-3 flex-col  m-auto h-[100vh]  justify-center items-center w-full">
@@ -49,7 +50,7 @@ function Board() {
          "
       >
         {/* Card Board Header  */}
-        <CardHeader Xnext={Xnext} />
+        <CardHeader Xnext={Xnext} showRestartModel={() => showRestartModel()} />
         <div className="grid grid-cols-3 gap-4">
           {squeries.map((el, index) => (
             <GameComponent
@@ -63,7 +64,7 @@ function Board() {
         {/* Counters Card  */}
         <div className="grid grid-cols-3 gap-4">
           <Conter
-            title="you(x)"
+            title={checkPlyear("x")}
             count={Ties.x}
             style="bg-themeblue shadow-themeblue/70 "
           />
@@ -73,7 +74,7 @@ function Board() {
             style="bg-themelight shadow-themelight/70"
           />
           <Conter
-            title="cmp(O)"
+            title={checkPlyear("o")}
             count={Ties.o}
             style="bg-themeyello shadow-themeyello/70"
           />

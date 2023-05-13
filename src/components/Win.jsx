@@ -3,11 +3,15 @@ import Xicon from "./Icons/Xicon";
 import { useContext } from "react";
 import "animate.css";
 import { ModalState, ModalContext } from "./context/ModalState";
+import { GameContext } from "./context/GameState";
+import Oicon from "./Icons/Oicon";
 
 const Ok = () => null;
 export default function Win() {
   const { Win, showWinModel, colseWinModal } = useContext(ModalContext);
-  console.log(Win, showWinModel, colseWinModal);
+
+  const { Winner, setSqueres, Xnext } = useContext(GameContext);
+  console.log(Winner, showWinModel, colseWinModal);
   return Win ? (
     <div
       className="absolute  top-0 left-0
@@ -20,7 +24,8 @@ export default function Win() {
         <div className=" flex flex-col justify-center items-center max-w-[480px] m-auto">
           <h3>You Win </h3>
           <div className="flex flex-row  my-5 justify-center items-center">
-            <Xicon size="" />
+            {console.log(Winner, "sa")}
+            {Winner === "x" ? <Xicon size="sm" /> : <Oicon size="sm" />}
             <h1 className="text-2xl   font-extrabold ml-3"> take The Round </h1>
           </div>
           <div className="flex flex-row justify-around items-center">
@@ -32,7 +37,10 @@ export default function Win() {
             </button>
             <button
               className="btn btn-blue m-2"
-              onClick={() => colseWinModal()}
+              onClick={() => {
+                setSqueres(new Array(9).fill(""));
+                colseWinModal();
+              }}
             >
               {" "}
               Next Round

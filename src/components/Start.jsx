@@ -48,7 +48,7 @@ function Start() {
         <div className="flex flex-col justify-around sm:h-[150px]">
           <button
             className="btn btn-yellow w-full"
-            onClick={() => () => ChosePalyerMode("cup")}
+            onClick={() => ChosePalyerMode("cup")}
           >
             new game (vs CPU)
           </button>

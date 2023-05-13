@@ -5,6 +5,7 @@ import Start from "./components/Start";
 import Board from "./components/Board";
 import Win from "./components/Win";
 import { useContext } from "react";
+import Restart from "./components/Restart";
 import GameState, { GameContext } from "./components/context/GameState";
 export function handleStart(param) {
   return;
@@ -16,7 +17,7 @@ function App() {
     <div className="App">
       {!is_start ? <Start /> : <Board />}
       <Win />
-      {/* <Restart /> */}
+      <Restart />
     </div>
   );
 }

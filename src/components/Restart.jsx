@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Xicon from "./Icons/Xicon";
 
 import "animate.css";
+import { ModalContext } from "./context/ModalState";
+import { GameContext, setIs_start } from "./context/GameState";
 
 const Ok = () => null;
 export default function Restart() {
-  return (
+  //  const  = () => setReastart(true);
+  const { Reastart, CloserestartModel } = useContext(ModalContext);
+
+  const { NoWinner, setSqueres, setIs_start } = useContext(GameContext);
+  return Reastart ? (
     <div
       className="absolute  top-0 left-0
       flex justify-center items-center
@@ -18,10 +24,21 @@ export default function Restart() {
           {/* <h3>You Win </h3> */}
           <div className="flex flex-row  my-5 justify-center items-center">
             {/* <Xicon size="" /> */}
-            <h1 className="text-2xl   font-extrabold ml-3"> Restart Game ? </h1>
+            <h1 className="text-2xl   font-extrabold ml-3">
+              {" "}
+              {!NoWinner ? "Restart Game ?" : "No Winner"}
+              {/*  */}{" "}
+            </h1>
           </div>
           <div className="flex flex-row justify-around items-center">
-            <button className="btn btn-yellow m-2" onClick={() => Ok("cpu")}>
+            <button
+              className="btn btn-yellow m-2"
+              onClick={() => {
+                setSqueres(new Array(9).fill(""));
+                setIs_start(false);
+                CloserestartModel();
+              }}
+            >
               Ok Restart
             </button>
             <button className="btn btn-blue m-2" onClick={() => Ok("user")}>
@@ -33,5 +50,7 @@ export default function Restart() {
       </div>
       {/*  */}
     </div>
+  ) : (
+    <></>
   );
 }
